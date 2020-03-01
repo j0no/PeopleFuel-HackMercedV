@@ -16,8 +16,7 @@ const Home = () => {
     <View>
       <View style={styles.page}>
         <Text>
-          Home Page {clicks} AHHHHHHH I'M JESSICA!!!{" "}
-          {"\nNumber of food in fridge:"} {fridgeFood}
+          Home Page {clicks} {"\nNumber of food in fridge:"} {fridgeFood}
         </Text>
         {["a", "b", "c"].map((cell, i) => (
           <Cell key={i} letter={cell} />
@@ -33,7 +32,7 @@ const Home = () => {
 
       <View style={styles.addFood}>
         <Button
-          title="button"
+          title="+ FOOD"
           onPress={() => {
             setFoodNum(fridgeFood + 1);
           }}
