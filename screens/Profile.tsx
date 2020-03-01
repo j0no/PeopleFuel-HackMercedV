@@ -1,30 +1,28 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, Button } from 'react-native';
 import CommonScreenProps from '../types/CommonScreenProps';
-const Profile = (props: CommonScreenProps) => {
+
+const imagesArr = [require('../assets/profile1.png'), require('../assets/profile2.png'), require('../assets/profile3.png'), require('../assets/profile4.png')];
+const Profile = ({ navigation }: { navigation: any }) => {
+    const ProfileImage = imagesArr[0];
     return <View style={styles.page}>
-        <View style={styles.profileImage}></View>
+        <Image style={styles.profileImage} source={ProfileImage} />
         <Text style={styles.nameText}> Jonathan Marcelino </Text>
         <Text style={styles.emailText}> jmarcelino@ucmerced.edu </Text>
-        <Button onPress={() => { }} title="Logout"
-        />
+        <Button onPress={() => navigation.navigate('Login')} title="Logout" />
     </View>
 }
 
 const styles = StyleSheet.create({
     page: {
-        paddingTop: 15,
+        paddingTop: 50,
         display: 'flex',
         alignItems: 'center',
         width: '100%',
-        minHeight: '100%', 
+        minHeight: '100%',
         backgroundColor: 'white'
     },
-
     profileImage: {
-        backgroundColor: '#ba324f',
-        borderColor: '#d62839',
-        borderWidth: 5,
         width: 200,
         height: 200,
         borderRadius: 500,
@@ -35,7 +33,8 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     emailText: {
-        fontSize: 20
+        fontSize: 20,
+        marginBottom: 5
     },
     logout: {
 

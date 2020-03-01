@@ -14,12 +14,25 @@ const InputStyle = {
     borderRadius: 8
 };
 
-const Login = ({ navigation }: CommonScreenProps) => {
+const Login = ({ navigation }: { navigation: any }) => {
     const [email, onEmailChangeText] = React.useState('email');
     const [pw, onPWChangeText] = React.useState('password');
 
-    return <View style={styles.page}>
+    const onLogin = () => {
+        // fetch('http://localhost:4000')
+        //     .then((res) => res.json())
+        //     .then((res) => {
+        //         console.log(
+        //             'res', res
+        //         )
+        //     }).catch((err) => {
+        //         console.log('err', err)
+        //     })
+        navigation.navigate('Main')
+    }
 
+    return <View style={styles.page}>
+        <Text style={styles.mainMsg}>  Welcome to Broccoli </Text>
         <TextInput
             style={InputStyle}
             onChangeText={(text) => {
@@ -27,29 +40,40 @@ const Login = ({ navigation }: CommonScreenProps) => {
                 onEmailChangeText(text)
             }}
             value={email} />
-
         <TextInput
             style={InputStyle}
             onChangeText={text => onPWChangeText(text)}
             value={pw} />
-
         <Button
             title="Login"
-            onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
+            onPress={onLogin}
         />
+        <Image style={styles.veggiesImg} source={require('../assets/splash.png')} />
     </View>
 }
 
 const styles = StyleSheet.create({
     page: {
-        paddingTop: 200,
+        paddingTop: 120,
         display: 'flex',
         width: '100%',
         paddingLeft: 12,
         paddingRight: 12,
-        backgroundColor: 'white', 
+        backgroundColor: 'white',
         height: '100%'
     },
+    loginButton: {
+    },
+    mainMsg: {
+        width: '100%',
+        fontSize: 30,
+        textAlign: 'center',
+        marginBottom: 30
+    },
+    veggiesImg: {
+        marginTop: 20,
+        display: 'flex'
+    }
 });
 
 export default Login;   

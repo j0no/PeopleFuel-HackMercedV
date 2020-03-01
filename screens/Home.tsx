@@ -1,40 +1,64 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Modal } from "react-native";
 
-const Cell = ({ letter }: { letter: string }) => {
+const Cell = ({ item }: {
+  item: {
+    name: string,
+    type: string,
+    dueDate: string,
+    email: string
+  }
+}) => {
   return (
     <View style={styles.cell}>
-      <Text>{`cell ${letter}`}</Text>
+      <Text style={styles.cellText}>{`${item.name}`}</Text>
     </View>
   );
 };
 
-const Home = () => {
+const items = [
+  {
+    name: 'Log Your Food',
+    type: 'vegetable',
+    dueDate: '2020-02-29',
+    email: 'jmarcelsw@gmail.com'
+  },
+  {
+    name: 'Recipes',
+    type: 'vegetable',
+    dueDate: '2020-02-29',
+    email: 'jmarcelsw@gmail.com'
+  },
+  {
+    name: 'Post Your Creation',
+    type: 'vegetable',
+    dueDate: '2020-02-29',
+    email: 'jmarcelsw@gmail.com'
+  },
+  {
+    name: 'Food Storage Tips',
+    type: 'vegetable',
+    dueDate: '2020-02-29',
+    email: 'jmarcelsw@gmail.com'
+  },
+]
+
+const Home = ({ navigation }: { navigation: any }) => {
   const [clicks, setClicks] = useState(0);
   const [fridgeFood, setFoodNum] = useState(0);
   return (
     <View>
       <View style={styles.page}>
-        <Text>
-          Home Page {clicks} {"\nNumber of food in fridge:"} {fridgeFood}
-        </Text>
-        {["a", "b", "c"].map((cell, i) => (
-          <Cell key={i} letter={cell} />
+        {items.map((item, i) => (
+          <Cell key={i} item={item} />
         ))}
-
-        <Button
-          title="button"
-          onPress={() => {
-            setClicks(clicks + 1);
-          }}
-        />
       </View>
 
       <View style={styles.addFood}>
         <Button
           title="+ FOOD"
           onPress={() => {
-            setFoodNum(fridgeFood + 1);
+            navigation.navigate('MyModal')
           }}
         />
       </View>
@@ -44,7 +68,7 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 15,
+    paddingTop: 30,
     display: "flex",
     alignItems: "center",
     width: "100%",
@@ -52,7 +76,19 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
   cell: {
-    height: 40
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: '100%',
+    height: 40,
+    backgroundColor: 'lightgreen',
+    marginBottom: 4
+  },
+  cellText: {
+    fontSize: 15,
+
+
   },
   addFood: {
     flex: 1,
